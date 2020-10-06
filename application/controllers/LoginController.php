@@ -68,4 +68,31 @@ class LoginController extends CI_Controller {
             die('Erreur : ' . $e->getMessage());
         }
     }
+    
+    public function verifyLogin($email, $password)
+    {
+        $query = 'SELECT `user_mail`, `user_password` FROM ed_user WHERE `users_mail` = :usermail';
+
+        try {
+            $resultQuery = $this->bdd->prepare($query);
+            $resultQuery->bindValue(':usersmail', $email);
+            $resultQuery->execute();
+            $resultUser = $resultQuery->fetch();
+            $passwordOK = password_verify($password, $resultUser['users_password']);
+
+            if ($passwordOK) {
+
+               return true;
+               
+            } else {
+               
+               return false;
+
+            }
+
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+    
+    }
 }
