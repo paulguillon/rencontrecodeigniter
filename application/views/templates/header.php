@@ -17,13 +17,13 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <?php if(isset($_SESSION["user"])):?>
-                    <a class="nav-link" href="<?= base_url()?>profile">Profil</a>
+                    <a class="nav-link" href="<?= base_url('profile')?>">Profil</a>
                     <?php else: ?>
-                    <a class="nav-link" href="<?= base_url()?>login">Login</a>
+                    <a class="nav-link" href="<?= base_url('login')?>">Login</a>
                     <?php endif; ?>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="search/index">Search</a>
+                    <a class="nav-link" href="<?= base_url('search/index')?>">Search</a>
                 </li>
             </ul>
         </div>
