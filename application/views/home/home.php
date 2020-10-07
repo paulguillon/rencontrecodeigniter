@@ -1,6 +1,6 @@
 <?php 
 //Redirect user if logged in
-if(isset($_SESSION["user"]))
+if(isset($_SESSION['user']))
     header('location:'.base_url().'search/index');
 ?>
 <a href="<?= base_url()?>login"><button class="btn btn-primary">Login</button></a>

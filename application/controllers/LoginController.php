@@ -2,22 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LoginController extends CI_Controller {
-	public function index()
-	{
-		$this->load->view('welcome_message');
-    }
-    
+
     public function __construct()
     {
-        try {
-            $this->bdd = new PDO('mysql:host=localhost:3308;dbname=meetic;charset=utf8', 'root', '');
-            // Activation des erreurs PDO
-            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // mode de fetch par défaut : FETCH_ASSOC / FETCH_OBJ / FETCH_BOTH
-            $this->bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
+        parent::__construct();
+        $this->load->model('login_model');
+        $this->load->helper('url_helper');
     }
 
     public function verifyMailExist($email)
