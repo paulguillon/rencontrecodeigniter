@@ -22,4 +22,8 @@ class Home extends CI_Controller
         $this->load->view('home/' . $page, $data);
         $this->load->view('templates/footer');
     }
+
+    public function create(){
+        $this->User_model->addUsers();
+    }
 }

@@ -2,7 +2,7 @@
 var_dump($_POST);
 var_dump($_POST['userInterest[]'])
 ?>
-<?= form_open('users/create')?>
+<?= form_open('home/addUsers')?>
 <form action="" method="post">
 	<div class="form-group">
 		<label for="userFirstName">Prénom</label>
