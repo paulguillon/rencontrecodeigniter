@@ -23,7 +23,18 @@ class Home extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function create(){
-        $this->User_model->addUsers();
+    public function register()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('home/register');
+            $this->load->view('templates/footer');
+        } else {
+            $this->user_model->addUsers();
+            $this->load->view('home/index');
+        }
     }
 }
