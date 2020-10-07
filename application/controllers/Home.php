@@ -27,14 +27,16 @@ class Home extends CI_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $data['title'] = "Register";
         
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('home/register');
             $this->load->view('templates/footer');
         } else {
-            $this->user_model->addUsers();
-            $this->load->view('home/index');
+            $this->user_model->addUser();
+            $this->load->view('home/profile');
         }
     }
 }
