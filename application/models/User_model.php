@@ -1,22 +1,35 @@
 <?php
-
-class LoginModel extends CI_Model{
-    public function index()
-	{
-		$this->load->view('welcome_message');
-    }
-    
+class User_model extends CI_Model
+{
     public function __construct()
     {
-        try {
-            $this->bdd = new PDO('mysql:host=localhost:3308;dbname=meetic;charset=utf8', 'root', '');
-            // Activation des erreurs PDO
-            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // mode de fetch par défaut : FETCH_ASSOC / FETCH_OBJ / FETCH_BOTH
-            $this->bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
+        $this->load->database();
+    }
+
+    public function get_users($slug = FALSE)
+    {
+        if ($slug === FALSE) {
+            $query = $this->db->get('ed_user');
+            return $query->result_array();
         }
+
+        $query = $this->db->get_where('ed_user', array('slug' => $slug));
+        return $query->row_array();
+    }
+
+    public function set_news()
+    {
+        $this->load->helper('url');
+
+        $slug = url_title($this->input->post('title'), 'dash', TRUE);
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'slug' => $slug,
+            'text' => $this->input->post('text')
+        );
+
+        return $this->db->insert('news', $data);
     }
 
     public function verifyMailExist($email)
