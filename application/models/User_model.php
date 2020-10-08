@@ -58,8 +58,8 @@ class User_model extends CI_Model
         $password = $this->input->post('userPassword');
         
         $mail = $this->input->post('userMail');
-
-        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => password_verify($password,PASSWORD_BCRYPT)));
+        $dbPassword = $this->db->query('SELECT `ed_user`.`user_password` from `ed_user`');
+        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => password_verify($password,$dbPassword)));
 
         return $query->result_array();
     }
