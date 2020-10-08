@@ -35,6 +35,11 @@ class User_model extends CI_Model
             die('Erreur : ' . $e->getMessage());
         }
     }
+
+    private function hash_password($password){
+        return password_hash($password, PASSWORD_BCRYPT);
+     }
+
     public function addUser()
     {
         $this->load->helper('url');
@@ -54,7 +59,7 @@ class User_model extends CI_Model
             'user_firstname' => $firstname,
             'user_lastname' => $lastname,
             'user_mail' => $mail,
-            'user_password' => $password,
+            'user_password' => $this->hash_password($password),
             'user_age' => $age,
             'user_position' => $position,
             'user_bio' => $bio,
