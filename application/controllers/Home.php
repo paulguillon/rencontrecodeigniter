@@ -1,5 +1,4 @@
 <?php
-$error = [];
 class Home extends CI_Controller
 {
 
@@ -28,16 +27,16 @@ class Home extends CI_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('userFirstName', 'Prénom', 'required');
-        $this->form_validation->set_rules('userLastName', 'Nom de famille', 'required');
-        $this->form_validation->set_rules('userMail', 'Adresse e-mail', 'required');
-        $this->form_validation->set_rules('userPassword', 'Mot de passe', 'required');
-        $this->form_validation->set_rules('userAge', 'Age', 'required');
-        $this->form_validation->set_rules('userPosition', 'Ville', 'required');
-        $this->form_validation->set_rules('userBio', 'Biographie', 'required');
-        $this->form_validation->set_rules('userGender', 'Genre', 'required');
-        $this->form_validation->set_rules('userSexuality', 'Sexualité', 'required');
-        $this->form_validation->set_rules('userInterest[]', 'Interêts', 'required');
+        $this->form_validation->set_rules('userFirstName', 'prénom', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userLastName', 'nom de famille', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userMail', 'adresse e-mail', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userPassword', 'mot de passe', 'required', array('required' => 'vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userAge', 'age', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userPosition', 'ville', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userBio', 'biographie', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userGender', 'genre', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userSexuality', 'sexualité', 'required', array('required' => 'Vous devez remplir le champ %s.'));
+        $this->form_validation->set_rules('userInterest[]', 'interêts', 'required', array('required' => 'Vous devez remplir le champ %s.'));
 
         $data['title'] = "Formulaire d'inscription";
 

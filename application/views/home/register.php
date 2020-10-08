@@ -1,4 +1,4 @@
-<?php echo validation_errors(); ?>
+<p class="text-danger text-center"><?php echo validation_errors(); ?></p>
 
 <form action="<?= base_url('home/register')?>" method="post">
 	<div class="form-group">
