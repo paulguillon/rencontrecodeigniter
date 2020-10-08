@@ -7,14 +7,49 @@ if (!isset($_SESSION["user"]))
     <?php for ($i = 0; $i < count($users); $i++) : ?>
         <div class="card flex-row flex-wrap">
             <div class="card-header border-0">
-                <img src="<?= base_url('assets/uploads/' . $pictures[$i]['picture_name']) ?>" alt="profile picture">
+                <img src="<?= base_url('assets/uploads/profiles/' . $pictures[$i]['picture_name']) ?>" alt="profile picture">
             </div>
             <div class="card-block px-2">
-                <h4 class="card-title"><?= $users[$i]['user_firstname'] . ' ' . $users[$i]['user_lastname'] ?></h4>
+                <h4 class="card-title"><?= ucfirst($users[$i]['user_firstname']) . ' ' . ucfirst($users[$i]['user_lastname']) ?></h4>
                 <p class="card-text">Age : <?= $users[$i]['user_age'] ?></p>
-                <p class="card-text">Gender : <?= $users[$i]['user_gender'] ?></p>
-                <p class="card-text">Sexuality : <?= $users[$i]['user_sexuality'] ?></p>
-                <a href="#" class="btn btn-primary">See profile</a>
+                <p class="card-text">Gender :
+                    <?php
+                    switch ($users[$i]['user_gender']) {
+                        case 0:
+                            echo 'Femme';
+                            break;
+                        case 1:
+                            echo 'Homme';
+                            break;
+                        case 2:
+                            echo 'Non binaire';
+                            break;
+                        case 3:
+                            echo 'Autre';
+                            break;
+                    }
+                    ?>
+                </p>
+                <p class="card-text">Sexualité :
+                    <?php
+                    switch ($users[$i]['user_sexuality']) {
+                        case 0:
+                            echo 'Hétérosexuel';
+                            break;
+                        case 1:
+                            echo 'Homosexuel';
+                            break;
+                        case 2:
+                            echo 'Bisexuel';
+                            break;
+                        case 3:
+                            echo 'Autre';
+                            break;
+                    }
+                    ?>
+                </p>
+                <p class="card-text">Localisation : <?= $users[$i]['user_position'] ?></p>
+                <a href="<?= base_url('search/' . $users[$i]['user_id']) ?>" class="btn btn-primary">Voir profil</a>
             </div>
         </div>
     <?php endfor; ?>

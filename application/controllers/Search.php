@@ -9,42 +9,45 @@ class Search extends CI_Controller
         $this->load->helper('url_helper');
     }
 
-    public function view($page = 'index')
+    public function view($option = 'index')
     {
-        if (!file_exists(APPPATH . 'views/search/' . $page . '.php')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-
         $_SESSION['user'] = "user";
-        $data['users'] = $this->user_model->get_users();
 
-        //Get th profile picture of each user
-        $pictures = [];
-        for ($i=0; $i < count($data['users']); $i++) { 
-            array_push($pictures, $this->picture_model->get_profile_pictures($data['users'][$i]['user_id']));
+        if(!is_numeric($option)){
+            $data['users'] = $this->user_model->get_users();
+
+            if (empty($data['users'])) show_404();
+
+            //Get th profile picture of each user
+            $pictures = [];
+            for ($i=0; $i < count($data['users']); $i++) { 
+                array_push($pictures, $this->picture_model->get_profile_pictures($data['users'][$i]['user_id']));
+            }
+            $data['pictures'] = $pictures;
+
+            $data['title'] = ucfirst($option); // Capitalize the first letter
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('search/' . $option);
+            $this->load->view('templates/footer');
         }
-        $data['pictures'] = $pictures;
+        else{
+            //Get user by id
+            $data['user'] = $this->user_model->get_users($option);
 
-        $data['title'] = ucfirst($page); // Capitalize the first letter
+            if (empty($data['user'])) show_404();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('search/' . $page);
-        $this->load->view('templates/footer');
-    }
+            //Get profile picture by user id
+            $data['profilePic'] = $this->picture_model->get_profile_pictures($data['user']['user_id']);
+            
+            //Get all users pictures
+            $data['userPictures'] = $this->picture_model->get_pictures($data['user']['user_id']);
 
-    public function show($userId = NULL)
-    {
-        $data['users_item'] = $this->user_model->get_users($userId);
+            $data['title'] = ucfirst($data['user']['user_firstname']).' '.ucfirst($data['user']['user_lastname']);
 
-        if (empty($data['news_item'])) {
-            show_404();
+            $this->load->view('templates/header', $data);
+            $this->load->view('search/showUser', $data);
+            $this->load->view('templates/footer');
         }
-
-        $data['title'] = $data['news_item']['title'];
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/view', $data);
-        $this->load->view('templates/footer');
     }
 }
