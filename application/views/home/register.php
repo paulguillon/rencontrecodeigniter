@@ -1,6 +1,5 @@
-<?php
-var_dump($_POST);
-?>
+<?php echo validation_errors(); ?>
+
 <form action="<?= base_url('home/register')?>" method="post">
 	<div class="form-group">
 		<label for="userFirstName">Prénom</label>

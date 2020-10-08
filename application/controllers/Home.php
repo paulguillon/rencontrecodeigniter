@@ -1,4 +1,5 @@
 <?php
+$error = [];
 class Home extends CI_Controller
 {
 
@@ -27,10 +28,26 @@ class Home extends CI_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->form_validation->set_rules('userFirstName', 'Prénom', 'required');
+        $this->form_validation->set_rules('userLastName', 'Nom de famille', 'required');
+        $this->form_validation->set_rules('userMail', 'Adresse e-mail', 'required');
+        $this->form_validation->set_rules('userPassword', 'Mot de passe', 'required');
+        $this->form_validation->set_rules('userAge', 'Age', 'required');
+        $this->form_validation->set_rules('userPosition', 'Ville', 'required');
+        $this->form_validation->set_rules('userBio', 'Biographie', 'required');
+        $this->form_validation->set_rules('userGender', 'Genre', 'required');
+        $this->form_validation->set_rules('userSexuality', 'Sexualité', 'required');
+        $this->form_validation->set_rules('userInterest[]', 'Interêts', 'required');
 
-        $data['title'] = "Register";
-        
-        if (!isset($_POST["registerButton"])) {
+        $data['title'] = "Formulaire d'inscription";
+
+        // if(isset($_POST['userFirstName'])){
+        //     if(empty($_POST['userFirstName'])){
+        //         $error['userFirstName'] = "Veuillez remplir le champ";
+        //     }
+        // }
+
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('home/register');
             $this->load->view('templates/footer');
