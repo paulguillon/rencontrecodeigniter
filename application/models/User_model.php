@@ -61,11 +61,6 @@ class User_model extends CI_Model
 
         $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => password_verify($password,PASSWORD_BCRYPT)));
 
-        $results = $query->result_array();
-
-        if (count($results) == 1)
-            return true;
-        else
-            return false;
+        return $query->result_array();
     }
 }

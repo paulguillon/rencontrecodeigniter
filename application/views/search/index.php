@@ -1,6 +1,6 @@
 <?php
 //Redirect user if not logged in
-if (!isset($_SESSION["user"]))
+if (!isset($_SESSION['user']))
     header('location:' . base_url('home/login'));
 ?>
 <div class="flex-row">

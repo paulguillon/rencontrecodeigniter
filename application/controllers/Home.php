@@ -76,10 +76,13 @@ class Home extends CI_Controller
             $this->load->view('home/login');
             $this->load->view('templates/footer');
         } else {
+            //return user if exist
             $login = $this->user_model->verifyLogin();
             
-            if($login)
+            if(!empty($login)){
+                $_SESSION['user'] = $login[0];
                 $this->load->view('search/index');
+            }
         }
     }
 }

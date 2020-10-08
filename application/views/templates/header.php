@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 
 <head>
@@ -9,22 +12,27 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="<?= base_url()?>"><img src="<?= base_url('assets/img/logo.png')?>" width="50" alt="logo"></a>
+        <a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('assets/img/logo.png') ?>" width="50" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <?php if(isset($_SESSION["user"])):?>
-                    <a class="nav-link" href="<?= base_url('home/profile')?>">Profil</a>
-                    <?php else: ?>
-                    <a class="nav-link" href="<?= base_url('home/login')?>">Login</a>
+                    <?php if (isset($_SESSION["user"])) : ?>
+                        <a class="nav-link" href="<?= base_url('home/profile') ?>">Profil</a>
+                    <?php else : ?>
+                        <a class="nav-link" href="<?= base_url('home/login') ?>">Login</a>
                     <?php endif; ?>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('search/index')?>">Search</a>
+                    <a class="nav-link" href="<?= base_url('search/index') ?>">Search</a>
                 </li>
+                <?php if (isset($_SESSION["user"])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('home/disconnect') ?>">Deconnexion</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
