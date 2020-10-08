@@ -100,4 +100,4 @@
 	</div>
 	<input type="submit" value="S'inscrire" class="btn btn-primary" name="registerButton">
 </form>
-<p>Déjà inscrit ? Connectez vous <a href="<?= base_url() ?>login">Connexion</a></p>
+<p>Déjà inscrit ? Connectez vous <a href="<?= base_url('home/login') ?>">Connexion</a></p>

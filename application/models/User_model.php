@@ -51,9 +51,12 @@ class User_model extends CI_Model
         return $this->db->insert('ed_user', $data);
     }
 
-    public function verifyLogin($mail, $password, $confirm)
+    public function verifyLogin()
     {
-        if ($password != $confirm) return false;
+        $this->load->helper('url');
+
+        $password = $this->input->post('userPassword');
+        $mail = $this->input->post('userMail');
 
         $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => $this->hash_password($password)));
     }
