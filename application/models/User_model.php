@@ -17,27 +17,12 @@ class User_model extends CI_Model
         return $query->row_array();
     }
 
-    // public function set_news()
-    // {
-    //     $this->load->helper('url');
-
-    //     $slug = url_title($this->input->post('title'), 'dash', TRUE);
-
-    //     $data = array(
-    //         'title' => $this->input->post('title'),
-    //         'slug' => $slug,
-    //         'text' => $this->input->post('text')
-    //     );
-
-       // return $this->db->insert('news', $data);
-    //}
-
     public function verifyMailExist($email)
     {
         $query = 'SELECT `user_mail` FROM `ed_user` WHERE `user_mail` = :userEmail';;
         try {
 
-            $resultQuery = $this->bdd->prepare($query);
+            $resultQuery = $this->db->prepare($query);
             $resultQuery->bindValue(':userEmail', $email);
             $resultQuery->execute();
             $count = $resultQuery->rowCount();
@@ -50,36 +35,36 @@ class User_model extends CI_Model
             die('Erreur : ' . $e->getMessage());
         }
     }
-    public function addUsers($userfirstname, $userlastname, $usermail, $userage, $userbio, $usergender, $usersexuality, $userposition, $userpassword, $userinterest)
+    public function addUser()
     {
+        $this->load->helper('url');
 
-        $query = 'INSERT INTO ed_user(user_firstname, user_lastname, user_mail, user_age, user_bio, user_gender, user_sexuality, user_position) 
-        VALUES (:userfirstname, :userlastname, :usermail, :userage, :userbio, :usergender, :usersexuality, :userposition)';
+        $firstname = $this->input->post('userFirstName');
+        $lastname = $this->input->post('userLastName');
+        $mail = $this->input->post('userMail');
+        $password = $this->input->post('userPassword');
+        $age = $this->input->post('userAge');
+        $position = $this->input->post('userPosition');
+        $bio = $this->input->post('userBio');
+        $gender = $this->input->post('userGender');
+        $sexuality = $this->input->post('userSexuality');
+        $interests[] = $this->input->post('userInterest[]');
 
-        $interestQuery = 'INSERT INTO ed_interest(interest_name)
-        VALUES (:userinterest)';
+        $data = array(
+            'user_firstname' => $firstname,
+            'user_lastname' => $lastname,
+            'user_mail' => $mail,
+            'user_password' => $password,
+            'user_age' => $age,
+            'user_position' => $position,
+            'user_bio' => $bio,
+            'user_gender' => $gender,
+            'user_sexuality' => $sexuality
+        );
 
-        try {
-            // Permet de mettre les nouvelles valeurs afin de les insérer dans la bdd
-            $resultQuery = $this->bdd->prepare($query);
-            $resultInterest = $this->bdd->prepare($interestQuery);
-            $resultQuery->bindValue(':usersfirstname', $userfirstname);
-            $resultQuery->bindValue(':userlastname', $userlastname);
-            $resultQuery->bindValue(':usermail', $usermail);
-            $resultQuery->bindValue(':userage,', $userage);
-            $resultQuery->bindValue(':userbio', $userbio);
-            $resultQuery->bindValue(':usergender', $usergender);
-            $resultQuery->bindValue(':usersexuality', $usersexuality);
-            $resultQuery->bindValue(':userposition', $userposition);
-            $resultQuery->bindValue(':userpassword', $userpassword);
-            $resultInterest->bindValue(':userinterest', $userinterest);
-            $resultQuery->execute();
-            
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
+        return $this->db->insert('ed_user', $data);
     }
-    
+
     public function verifyLogin($email, $password)
     {
         $query = 'SELECT `user_mail`, `user_password` FROM ed_user WHERE `users_mail` = :usermail';
@@ -93,14 +78,11 @@ class User_model extends CI_Model
 
             if ($passwordOK) {
 
-               return true;
-               
+                return true;
             } else {
-               
-               return false;
 
+                return false;
             }
-
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
