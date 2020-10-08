@@ -2,6 +2,8 @@
 	<div class="alert alert-danger"><?php echo validation_errors(); ?></div>
 <?php endif; ?>
 
+<?php var_dump($_POST)?>
+
 <form action="<?= base_url('home/register') ?>" method="post">
 	<div class="form-group">
 		<label for="userFirstName">Prénom</label>

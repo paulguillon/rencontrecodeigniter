@@ -5,6 +5,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('interest_model');
         $this->load->helper('url_helper');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -55,7 +56,13 @@ class Home extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->user_model->addUser();
+            $this->interest_model->addInterests();
             $this->load->view('home/profile');
         }
+    }
+
+    public function login()
+    {
+        
     }
 }
