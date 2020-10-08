@@ -17,6 +17,11 @@ class User_model extends CI_Model
         return $query->row_array();
     }
 
+    private function hash_password($password)
+    {
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+
     public function addUser()
     {
         $this->load->helper('url');
@@ -35,21 +40,21 @@ class User_model extends CI_Model
             'user_firstname' => $firstname,
             'user_lastname' => $lastname,
             'user_mail' => $mail,
-            'user_password' => $password,
+            'user_password' => $this->hash_password($password),
             'user_age' => $age,
             'user_position' => $position,
             'user_bio' => $bio,
             'user_gender' => $gender,
             'user_sexuality' => $sexuality
         );
-        
+
         return $this->db->insert('ed_user', $data);
     }
 
     public function verifyLogin($mail, $password, $confirm)
     {
-        if($password != $confirm) return false;
+        if ($password != $confirm) return false;
 
-        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => password_verify($password)));
+        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => $this->hash_password($password)));
     }
 }
