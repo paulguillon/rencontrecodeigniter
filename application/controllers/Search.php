@@ -6,6 +6,7 @@ class Search extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('picture_model');
+        $this->load->model('interest_model');
         $this->load->helper('url_helper');
     }
 
@@ -13,6 +14,7 @@ class Search extends CI_Controller
     {
         $_SESSION['user'] = "user";
 
+        //if a page name is passed
         if(!is_numeric($option)){
             $data['users'] = $this->user_model->get_users();
 
@@ -31,6 +33,7 @@ class Search extends CI_Controller
             $this->load->view('search/' . $option);
             $this->load->view('templates/footer');
         }
+        //If an id is passed
         else{
             //Get user by id
             $data['user'] = $this->user_model->get_users($option);
@@ -39,9 +42,12 @@ class Search extends CI_Controller
 
             //Get profile picture by user id
             $data['profilePic'] = $this->picture_model->get_profile_pictures($data['user']['user_id']);
-            
+
             //Get all users pictures
             $data['userPictures'] = $this->picture_model->get_pictures($data['user']['user_id']);
+
+            //Get all users interests
+            $data['userInterests'] = $this->interest_model->get_interests($data['user']['user_id']);
 
             $data['title'] = ucfirst($data['user']['user_firstname']).' '.ucfirst($data['user']['user_lastname']);
 

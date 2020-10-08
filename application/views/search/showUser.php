@@ -41,6 +41,12 @@
         </p>
         <p>Mail : <?= $user['user_mail'] ?></p>
         <p>Résumé : <?= $user['user_bio'] ?></p>
+        <p>Centre d'intérêts :</p>
+        <ul>
+            <?php foreach ($userInterests as $interest): ?>
+                <li><?= $interest['interest_name']?></li>
+            <?php endforeach;?>
+        </ul>
     </section>
     <section class="pictures">
         <h2>Photos</h2>

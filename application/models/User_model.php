@@ -53,7 +53,6 @@ class User_model extends CI_Model
         $bio = $this->input->post('userBio');
         $gender = $this->input->post('userGender');
         $sexuality = $this->input->post('userSexuality');
-        $interests[] = $this->input->post('userInterest[]');
 
         $data = array(
             'user_firstname' => $firstname,
@@ -66,7 +65,7 @@ class User_model extends CI_Model
             'user_gender' => $gender,
             'user_sexuality' => $sexuality
         );
-
+        
         return $this->db->insert('ed_user', $data);
     }
 
