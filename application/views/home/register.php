@@ -32,19 +32,19 @@
 	<div class="form-group">
 		<label for="userGender">Genre</label>
 		<select class="form-control" name="userGender" id="userGender">
-			<option>Masculin</option>
-			<option>Féminin</option>
-			<option>Non-binaire</option>
-			<option>Autre</option>
+			<option value="0">Féminin</option>
+			<option value="1">Masculin</option>
+			<option value="2">Non-binaire</option>
+			<option value="3">Autre</option>
 		</select>
 	</div>
 	<div class="form-group">
 		<label for="userSexuality">Sexualité</label>
 		<select class="form-control" name="userSexuality" id="userSexuality">
-			<option>Hétérosexuel</option>
-			<option>Homosexuel</option>
-			<option>Bisexuel</option>
-			<option>Autre</option>
+			<option value="0">Hétérosexuel</option>
+			<option value="1">Homosexuel</option>
+			<option value="2">Bisexuel</option>
+			<option value="3">Autre</option>
 		</select>
 	</div>
 	<div class="form-group">

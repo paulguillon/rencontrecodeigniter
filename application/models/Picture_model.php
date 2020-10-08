@@ -14,9 +14,9 @@ class Picture_model extends CI_Model
             return $query->result_array();
         }
 
-        //All pictures of the passed user
-        $query = $this->db->get_where('ed_picture', array('picture_user' => $user));
-        return $query->row_array();
+        //All pictures of the passed user except profile picture
+        $query = $this->db->get_where('ed_picture', array('picture_user' => $user, 'picture_profile' => 0));
+        return $query->result_array();
     }
 
     public function get_profile_pictures($user = FALSE)
