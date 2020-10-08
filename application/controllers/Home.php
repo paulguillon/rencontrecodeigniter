@@ -63,6 +63,20 @@ class Home extends CI_Controller
 
     public function login()
     {
-        
+        $this->form_validation->set_rules('userMail', 'mail', 'required',
+                        array('required' => 'Veuillez remplir le champ %s.'));
+        $this->form_validation->set_rules('userPassword', 'password', 'required',
+                        array('required' => 'Veuillez remplir le champ %s.'));
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('home/login');
+            $this->load->view('templates/footer');
+        } else {
+            $login = $this->user_model->verifyLogin();
+    
+            if($login)
+                $this->load->view('search/index');
+        }
     }
 }

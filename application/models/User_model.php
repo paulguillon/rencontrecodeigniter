@@ -17,28 +17,10 @@ class User_model extends CI_Model
         return $query->row_array();
     }
 
-    public function verifyMailExist($email)
+    private function hash_password($password)
     {
-        $query = 'SELECT `user_mail` FROM `ed_user` WHERE `user_mail` = :userEmail';;
-        try {
-
-            $resultQuery = $this->db->prepare($query);
-            $resultQuery->bindValue(':userEmail', $email);
-            $resultQuery->execute();
-            $count = $resultQuery->rowCount();
-            if ($count == 0) {
-                return false;
-            } else {
-                return true;
-            }
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
-
-    private function hash_password($password){
         return password_hash($password, PASSWORD_BCRYPT);
-     }
+    }
 
     public function addUser()
     {
@@ -65,30 +47,24 @@ class User_model extends CI_Model
             'user_gender' => $gender,
             'user_sexuality' => $sexuality
         );
-        
+
         return $this->db->insert('ed_user', $data);
     }
 
-    public function verifyLogin($email, $password)
+    public function verifyLogin()
     {
-        $query = 'SELECT `user_mail`, `user_password` FROM ed_user WHERE `users_mail` = :usermail';
+        $this->load->helper('url');
 
-        try {
-            $resultQuery = $this->bdd->prepare($query);
-            $resultQuery->bindValue(':usermail', $email);
-            $resultQuery->execute();
-            $resultUser = $resultQuery->fetch();
-            $passwordOK = password_verify($password, $resultUser['users_password']);
+        $password = $this->input->post('userPassword');
+        $mail = $this->input->post('userMail');
 
-            if ($passwordOK) {
+        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => $this->hash_password($password)));
 
-                return true;
-            } else {
+        $results = $query->result_array();
 
-                return false;
-            }
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
+        if (count($results) == 1)
+            return true;
+        else
+            return false;
     }
 }
