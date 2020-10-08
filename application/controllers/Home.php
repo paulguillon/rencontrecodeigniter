@@ -80,8 +80,9 @@ class Home extends CI_Controller
             $login = $this->user_model->verifyLogin();
             
             if(!empty($login)){
+                session_start();
                 $_SESSION['user'] = $login[0];
-                $this->load->view('search/index');
+                header('location:'.base_url('search/index'));
             }
         }
     }

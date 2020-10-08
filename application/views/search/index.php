@@ -1,7 +1,8 @@
 <?php
+var_dump($_SESSION);
 //Redirect user if not logged in
-if (!isset($_SESSION['user']))
-    header('location:' . base_url('home/login'));
+// if (!isset($_SESSION['user']))
+//     header('location:' . base_url('home/login'));
 ?>
 <div class="flex-row">
     <?php for ($i = 0; $i < count($users); $i++) : ?>
