@@ -12,8 +12,6 @@ class Search extends CI_Controller
 
     public function view($option = 'index')
     {
-        $_SESSION['user'] = "user";
-
         //if a page name is passed
         if(!is_numeric($option)){
             $data['users'] = $this->user_model->get_users();

@@ -69,13 +69,15 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('userPassword', 'password', 'required',
                         array('required' => 'Veuillez remplir le champ %s.'));
 
+        $data['title'] = "Connexion";
+
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', $data);
             $this->load->view('home/login');
             $this->load->view('templates/footer');
         } else {
             $login = $this->user_model->verifyLogin();
-    
+            
             if($login)
                 $this->load->view('search/index');
         }
