@@ -59,5 +59,12 @@ class User_model extends CI_Model
         $mail = $this->input->post('userMail');
 
         $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => $this->hash_password($password)));
+
+        $results = $query->result_array();
+
+        if (count($results) == 1)
+            return true;
+        else
+            return false;
     }
 }

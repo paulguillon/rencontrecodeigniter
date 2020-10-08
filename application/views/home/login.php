@@ -13,4 +13,4 @@
     </div>
     <input type="submit" value="Login" class="btn btn-primary">
 </form>
-<p>Not logged in ? <a href="<?= base_url('home/register')?>">Register</a></p>
+<p>Pas encore inscrit ? <a href="<?= base_url('home/register')?>">Register</a></p>
