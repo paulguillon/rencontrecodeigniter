@@ -76,7 +76,7 @@ class User_model extends CI_Model
 
         try {
             $resultQuery = $this->bdd->prepare($query);
-            $resultQuery->bindValue(':usersmail', $email);
+            $resultQuery->bindValue(':usermail', $email);
             $resultQuery->execute();
             $resultUser = $resultQuery->fetch();
             $passwordOK = password_verify($password, $resultUser['users_password']);
@@ -92,6 +92,4 @@ class User_model extends CI_Model
             die('Erreur : ' . $e->getMessage());
         }
     }
-    //     return $this->db->insert('news', $data);
-    // }
 }
