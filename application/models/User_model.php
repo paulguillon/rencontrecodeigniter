@@ -17,24 +17,6 @@ class User_model extends CI_Model
         return $query->row_array();
     }
 
-    public function verifyMailExist($email)
-    {
-        $query = 'SELECT `user_mail` FROM `ed_user` WHERE `user_mail` = :userEmail';;
-        try {
-
-            $resultQuery = $this->db->prepare($query);
-            $resultQuery->bindValue(':userEmail', $email);
-            $resultQuery->execute();
-            $count = $resultQuery->rowCount();
-            if ($count == 0) {
-                return false;
-            } else {
-                return true;
-            }
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-    }
     public function addUser()
     {
         $this->load->helper('url');
@@ -64,28 +46,10 @@ class User_model extends CI_Model
         return $this->db->insert('ed_user', $data);
     }
 
-    public function verifyLogin($email, $password)
+    public function verifyLogin($mail, $password, $confirm)
     {
-        $query = 'SELECT `user_mail`, `user_password` FROM ed_user WHERE `users_mail` = :usermail';
+        if($password != $confirm) return false;
 
-        try {
-            $resultQuery = $this->bdd->prepare($query);
-            $resultQuery->bindValue(':usersmail', $email);
-            $resultQuery->execute();
-            $resultUser = $resultQuery->fetch();
-            $passwordOK = password_verify($password, $resultUser['users_password']);
-
-            if ($passwordOK) {
-
-                return true;
-            } else {
-
-                return false;
-            }
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
+        $query = $this->db->get_where('ed_user', array('user_mail' => $mail, 'user_password' => password_verify($password)));
     }
-    //     return $this->db->insert('news', $data);
-    // }
 }

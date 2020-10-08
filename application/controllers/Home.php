@@ -63,6 +63,9 @@ class Home extends CI_Controller
 
     public function login()
     {
-        
+        $login = $this->user_model->verifyLogin();
+
+        if($login)
+            $this->load->view('search/index');
     }
 }
