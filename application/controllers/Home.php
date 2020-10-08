@@ -30,7 +30,7 @@ class Home extends CI_Controller
 
         $data['title'] = "Register";
         
-        if ($this->form_validation->run() === FALSE) {
+        if (!isset($_POST["registerButton"])) {
             $this->load->view('templates/header', $data);
             $this->load->view('home/register');
             $this->load->view('templates/footer');
