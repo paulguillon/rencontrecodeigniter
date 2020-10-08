@@ -1,6 +1,8 @@
-<p class="text-danger text-center"><?php echo validation_errors(); ?></p>
+<?php if (!empty(validation_errors())) : ?>
+	<div class="alert alert-danger"><?php echo validation_errors(); ?></div>
+<?php endif; ?>
 
-<form action="<?= base_url('home/register')?>" method="post">
+<form action="<?= base_url('home/register') ?>" method="post">
 	<div class="form-group">
 		<label for="userFirstName">Prénom</label>
 		<input type="text" name="userFirstName" id="userFirstName" class="form-control">
@@ -48,49 +50,49 @@
 		</select>
 	</div>
 	<div class="form-group">
-    <label for="userInterest">Centres d'interêts</label>
+		<label for="userInterest">Centres d'interêts</label>
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="cinéma" name="userInterest[]">
-			<label class="form-check-label" for="userInterest" >
+			<label class="form-check-label" for="userInterest">
 				Cinéma
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="sport" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Sport
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="politique" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Politique
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="jeu video" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Jeu vidéo
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="histoire" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Histoire
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="littérature" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Littérature
 			</label>
-        </div>
-        <div class="form-check">
+		</div>
+		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value="tourisme" name="userInterest[]">
 			<label class="form-check-label" for="userInterest">
 				Tourisme
 			</label>
-        </div>       
+		</div>
 	</div>
 	<div class="form-group">
 		<label for="userPosition" name="userPosition">Ville</label>
@@ -98,4 +100,4 @@
 	</div>
 	<input type="submit" value="S'inscrire" class="btn btn-primary" name="registerButton">
 </form>
-<p>Déjà inscrit ? Connectez vous <a href="<?= base_url()?>login">Connexion</a></p>
+<p>Déjà inscrit ? Connectez vous <a href="<?= base_url() ?>login">Connexion</a></p>
