@@ -7,6 +7,24 @@
     color: pink;
     border: none;
 }
+
+.btn:hover{
+    background-color: rgb(180, 16, 107);
+    color: pink;
+    border: none;
+}
+
+.btn:active{
+    box-shadow: none;
+    background-color: rgb(165, 68, 121);
+    color: pink;
+    border: none;
+}
+.btn:active:focus{
+    background-color: rgb(165, 68, 121);
+    color: pink;
+    border: none;
+}
 a{
     color: palevioletred;
 }
@@ -34,5 +52,5 @@ header{
 }
 
 body{
-    font-family: 'Comic Sans MS';
+    font-family: 'Cambria';
 }
