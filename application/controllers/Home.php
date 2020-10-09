@@ -35,7 +35,7 @@ class Home extends CI_Controller
                         array('required' => 'Veuillez remplir le champ %s.'));
         $this->form_validation->set_rules('userPassword', 'mot de passe', 'required',
                         array('required' => 'Veuillez remplir le champ %s.',));
-     $this->form_validation->set_rules('userConfirm', 'mot de passe', 'required|matches[userPassword]', array('required' => 'Veuillez remplir le champ %s.', 'matches' => 'Veuillez remplir correctement les deux champs de mot de passe.'));
+        $this->form_validation->set_rules('userConfirm', 'mot de passe', 'required|matches[userPassword]', array('required' => 'Veuillez remplir le champ %s.', 'matches' => 'Veuillez remplir correctement les deux champs de mot de passe.'));
         $this->form_validation->set_rules('userAge', 'age', 'required',
                         array('required' => 'Veuillez remplir le champ %s.'));
         $this->form_validation->set_rules('userPosition', 'ville', 'required',
@@ -59,7 +59,15 @@ class Home extends CI_Controller
         } else {
             $this->user_model->addUser();
             $this->interest_model->addInterests();
-            $this->load->view('home/profile');
+            
+            //return user if exist
+            $login = $this->user_model->verifyLogin();
+            
+            if(!empty($login)){
+                session_start();
+                $_SESSION['user'] = $login[0];
+                header('location:'.base_url('search/index'));
+            }
         }
     }
 
