@@ -1,0 +1,11 @@
+.bg-pink{
+    background-color: rgb(141, 9, 82);
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: rgba(255, 255, 255, 0.877);
+}
