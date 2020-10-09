@@ -3,5 +3,5 @@
 if(isset($_SESSION['user']))
     header('location:'.base_url().'search/index');
 ?>
-<a href="<?= base_url('home/login')?>"><button class="btn btn-primary">Login</button></a>
-<a href="<?= base_url('home/register')?>"><button class="btn btn-primary">Register</button></a>
+<a href="<?= base_url('home/login')?>"><button class="btn btn-primary bg-pink">Connexion</button></a>
+<a href="<?= base_url('home/register')?>"><button class="btn btn-primary bg-pink">Inscription</button></a>

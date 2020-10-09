@@ -1,6 +1,6 @@
 </div>
-<footer class="container alert alert-secondary mt-3">
-    <em>&copy; 2020</em>
+<footer class="container jumbotron mt-3">
+    <em>Copyright &copy; <?= date('Y')?></em>
 </footer>
 </body>
 

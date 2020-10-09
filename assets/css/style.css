@@ -2,10 +2,37 @@
     background-color: rgb(141, 9, 82);
 }
 
+.btn{
+    background-color: rgb(141, 9, 82);
+    color: pink;
+    border: none;
+}
+a{
+    color: palevioletred;
+}
+a:hover{
+    color: rgb(141, 9, 82);
+}
+label{
+    color: rgb(141, 9, 82);
+}
 .navbar-light .navbar-nav .nav-link{
-    color: white;
+    color: pink;
 }
 
 .navbar-light .navbar-nav .nav-link:hover{
     color: rgba(255, 255, 255, 0.877);
+}
+header{
+    color: rgb(141, 9, 82);
+}
+.jumbotron{
+    background-color: pink;
+}
+.alert{
+    background-color: pink;
+}
+
+body{
+    font-family: 'Comic Sans MS';
 }

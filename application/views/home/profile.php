@@ -12,4 +12,4 @@ if (!isset($_SESSION["user"])) header('location:' . base_url('home/login'))
 <input type="submit" value="Upload" class="btn btn-primary mt-3" />
 
 </form>
-<a href="<?= base_url() ?>"><button class="btn btn-primary">Home</button></a>
+<a href="<?= base_url() ?>"><button class="btn btn-primary">Accueil</button></a>
