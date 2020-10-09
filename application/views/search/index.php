@@ -7,7 +7,7 @@
             <div class="card-block px-2">
                 <h4 class="card-title"><?= ucfirst($users[$i]['user_firstname']) . ' ' . ucfirst($users[$i]['user_lastname']) ?></h4>
                 <p class="card-text">Age : <?= $users[$i]['user_age'] ?></p>
-                <p class="card-text">Gender :
+                <p class="card-text">Genre :
                     <?php
                     switch ($users[$i]['user_gender']) {
                         case 0:

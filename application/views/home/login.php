@@ -4,13 +4,13 @@
 
 <form action="<?= base_url('home/login') ?>" method="post">
     <div class="form-group">
-        <label for="userMail">Mail</label>
+        <label for="userMail">Adresse email</label>
         <input type="email" name="userMail" id="userMail" class="form-control">
     </div>
     <div class="form-group">
-        <label for="userPassword">Password</label>
+        <label for="userPassword">Mot de passe</label>
         <input type="password" name="userPassword" id="userPassword" class="form-control">
     </div>
-    <input type="submit" value="Login" class="btn btn-primary">
+    <input type="submit" value="Connexion" class="btn btn-primary">
 </form>
-<p>Pas encore inscrit ? <a href="<?= base_url('home/register')?>">Register</a></p>
+<p>Pas encore inscrit ? <a href="<?= base_url('home/register')?>">S'inscrire</a></p>
