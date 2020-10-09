@@ -59,7 +59,15 @@ class Home extends CI_Controller
         } else {
             $this->user_model->addUser();
             $this->interest_model->addInterests();
-            $this->load->view('home/profile');
+            
+            //return user if exist
+            $login = $this->user_model->verifyLogin();
+            
+            if(!empty($login)){
+                session_start();
+                $_SESSION['user'] = $login[0];
+                header('location:'.base_url('search/index'));
+            }
         }
     }
 
