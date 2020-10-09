@@ -29,10 +29,13 @@ header{
 .jumbotron{
     background-color: pink;
 }
-.alert{
-    background-color: pink;
+footer{
+    text-align: center;
 }
 
 body{
-    font-family: 'Comic Sans MS';
+    font-family: 'Montserrat';
+}
+.jumbotron{
+    height: 150px;
 }

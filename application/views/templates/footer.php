@@ -1,6 +1,7 @@
 </div>
-<footer class="container jumbotron mt-3">
-    <em>Copyright &copy; <?= date('Y')?></em>
+<footer class="container mt-3">
+    <hr>
+    <em>Copyright &copy; <?= date('Y') ?></em>
 </footer>
 </body>
 
