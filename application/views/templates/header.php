@@ -22,11 +22,11 @@ session_start();
                     <?php if (isset($_SESSION["user"])) : ?>
                         <a class="nav-link" href="<?= base_url('home/profile') ?>">Profil</a>
                     <?php else : ?>
-                        <a class="nav-link" href="<?= base_url('home/login') ?>">Login</a>
+                        <a class="nav-link" href="<?= base_url('home/login') ?>">Connexion</a>
                     <?php endif; ?>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('search/index') ?>">Search</a>
+                    <a class="nav-link" href="<?= base_url('search/index') ?>">Recherche</a>
                 </li>
                 <?php if (isset($_SESSION["user"])) : ?>
                     <li class="nav-item">
