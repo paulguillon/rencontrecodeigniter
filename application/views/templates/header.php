@@ -25,10 +25,10 @@ session_start();
                         <a class="nav-link" href="<?= base_url('home/login') ?>">Connexion</a>
                     <?php endif; ?>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('search/index') ?>">Recherche</a>
-                </li>
                 <?php if (isset($_SESSION["user"])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('search/index') ?>">Recherche</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('home/disconnect') ?>">Deconnexion</a>
                     </li>

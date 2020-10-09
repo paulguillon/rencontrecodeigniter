@@ -36,7 +36,7 @@ class Picture_model extends CI_Model
     {
         $this->load->helper('url');
 
-        $testIfExist = $this->db->get_where('ed_picture', array('picture_user' => $userId, 'picture_profile' => 1));
+        $testIfExist = $this->db->get_where('ed_picture', array('picture_user' => $userId, 'picture_profile' => 1))->result_array();
 
         $data = array(
             'picture_name' => $upload_data['file_name'],
