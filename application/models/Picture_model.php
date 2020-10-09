@@ -31,4 +31,25 @@ class Picture_model extends CI_Model
         $query = $this->db->get_where('ed_picture', array('picture_user' => $user, 'picture_profile' => 1));
         return $query->row_array();
     }
+
+    public function set_profile_picture($upload_data, $userId)
+    {
+        $this->load->helper('url');
+
+        $testIfExist = $this->db->get_where('ed_picture', array('picture_user' => $userId, 'picture_profile' => 1));
+
+        $data = array(
+            'picture_name' => $upload_data['file_name'],
+            'picture_profile' => 1,
+            'picture_user' => $userId
+        );
+
+        //if the user didn't upload a picture yet
+        if ($testIfExist) {
+            $this->db->where(array('picture_user' => $userId, 'picture_profile' => 1));
+            return $this->db->update('ed_picture', $data);
+        } else {
+            return $this->db->insert('ed_picture', $data);
+        }
+    }
 }

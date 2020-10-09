@@ -1,6 +1,9 @@
 <?php if (!empty(validation_errors())) : ?>
 	<div class="alert alert-danger"><?php echo validation_errors(); ?></div>
 <?php endif; ?>
+<?php if (isset($error['error_mail'])) : ?>
+	<div class="alert alert-danger">Adresse mail déjà existante</div>
+<?php endif; ?>
 
 <form action="<?= base_url('home/register') ?>" method="post">
 	<div class="form-group">

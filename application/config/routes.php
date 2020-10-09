@@ -56,3 +56,4 @@ $route['home/login'] = 'home/login';
 $route['home/register'] = 'home/register';
 $route['home/(:any)'] = 'home/view/$1';
 $route['search/(:any)'] = 'search/view/$1';
+$route['upload/(:any)'] = 'upload/do_upload/$1';

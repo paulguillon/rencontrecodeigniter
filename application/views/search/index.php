@@ -1,14 +1,8 @@
-<?php
-var_dump($_SESSION);
-//Redirect user if not logged in
-// if (!isset($_SESSION['user']))
-//     header('location:' . base_url('home/login'));
-?>
 <div class="flex-row">
     <?php for ($i = 0; $i < count($users); $i++) : ?>
         <div class="card flex-row flex-wrap">
             <div class="card-header border-0">
-                <img src="<?= base_url('assets/uploads/profiles/' . $pictures[$i]['picture_name']) ?>" alt="profile picture">
+                <img src="<?= base_url('assets/uploads/profiles/' . $pictures[$i]['picture_name']) ?>" alt="profile picture" height="300">
             </div>
             <div class="card-block px-2">
                 <h4 class="card-title"><?= ucfirst($users[$i]['user_firstname']) . ' ' . ucfirst($users[$i]['user_lastname']) ?></h4>
